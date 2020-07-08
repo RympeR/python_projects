@@ -1,8 +1,14 @@
-with open('stat.txt', 'r') as f:
-    y = x = 0
-    for data in f.readlines():
-        if data.startswith('0'): 
-            y += 1
-        elif data.startswith('x'):
-            x+= 1
-    print(f"x {x} y {y}")
+from enum import Enum, IntEnum
+
+class Light(Enum):
+    RED = 1
+    YELLOW = 2
+    GREEN = 3
+
+print(Light['RED'])
+
+class Priority(IntEnum):
+    LOW = 1
+    NORMAL = 2
+    HIGH = 3
+

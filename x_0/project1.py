@@ -4,7 +4,7 @@ import random
 
 
 def print_desk():
-    os.system("clear")
+    os.system("cls")
     global desk
     print(desk['1'], '|', desk['2'], '|', desk['3'])
     print('- - - - -')
@@ -35,8 +35,7 @@ def enemy_turn(mark, level=1):
                 if mark_combo.count(' ') == 1 and mark_combo.count(mark) == 2:
                     almost_win = True
 
-                elif mark_combo.count(' ') == 1 \
-                    and mark_combo.count(mark) == 0:
+                elif mark_combo.count(' ') == 1 and mark_combo.count(mark) == 0:
                     warning = True
 
                 counter = 0
@@ -81,7 +80,7 @@ def game():
     turns = 0
     global desk
     global combos
-     # input('Input mark [x,0]: ')
+    input('Input mark [x,0]: ')
     your_mark = 'x'
     if your_mark == 'x':
         enemy_marks = '0'
@@ -90,44 +89,43 @@ def game():
 
     while not check(turns, marks):
         turns += 1
-        if desk['1'] == 'x' and desk['2'] == '0' and desk['3'] == 'x'\
-           and desk['6'] == '0' and desk['8'] == 'x' and desk['9'] == '0':
-            os.sys.exit()
-            os.system("python3 project1.py")
+        # if desk['1'] == 'x' and desk['2'] == '0' and desk['3'] == 'x' and desk['6'] == '0' and desk['8'] == 'x' and desk['9'] == '0':
+        #     os.sys.exit()
+        #     os.system("python3 project1.py")
 
-        enemy_turn('x', 2)
-        check(turns, marks)
-        print_desk()
-        turns += 1
-        enemy_turn('0', 2)
-        print_desk()
-        check(turns, marks)
+        # enemy_turn('x', 2)
+        # check(turns, marks)
+        # print_desk()
+        # turns += 1
+        # enemy_turn('0', 2)
+        # print_desk()
+        # check(turns, marks)
 
-        # place = input("Input free place 1-9: ")
-        # while desk[place] != ' ':
-        #     place = input("Input free place 1-9: ")
-        # if your_mark == 'x':
-        #     # desk[place] = your_mark
-        #     enemy_turn(your_mark,2)
-        #     check(turns, marks)
-        #     print_desk()
-        #     turns += 1
-        #     enemy_turn('0',2)
-        #     check(turns, marks)
-        #     print_desk()
-        # else:
-        #     # desk[place] = your_mark
-        #     enemy_turn('x',2)
+        place = input("Input free place 1-9: ")
+        while desk[place] != ' ':
+            place = input("Input free place 1-9: ")
+        if your_mark == 'x':
+            desk[place] = your_mark
+            # enemy_turn(your_mark,2)
+            check(turns, marks)
+            print_desk()
+            turns += 1
+            enemy_turn('0',2)
+            check(turns, marks)
+            print_desk()
+        else:
+            # desk[place] = your_mark
+            enemy_turn('x',2)
 
-        #     check(turns, marks)
-        #     print_desk()
-        #     turns += 1
-        #     # desk[place] = your_mark
-        #     enemy_turn(your_mark,2)
+            check(turns, marks)
+            print_desk()
+            turns += 1
+            desk[place] = your_mark
+            # enemy_turn(your_mark,2)
 
-        #     check(turns, marks)
+            check(turns, marks)
 
-        #     print_desk()
+            print_desk()
 
 
 def check(turns, marks):
@@ -140,10 +138,7 @@ def check(turns, marks):
         draw_cond = False
         for combo in combos:
                 for count in combo:
-                    if (desk[count] != ' ' \
-                        and desk[count] == marks[(turns) % 2]) \
-                    or (desk[count] != ' ' \
-                        and desk[count] == marks[(turns+1) % 2]):
+                    if (desk[count] != ' ' and desk[count] == marks[(turns) % 2]) or (desk[count] != ' ' and desk[count] == marks[(turns+1) % 2]):
                         counter += 1
                     else:
                         continue
@@ -157,7 +152,7 @@ def check(turns, marks):
                     else:
                         y_win += 1
                     # time.sleep(3)
-                    os.system("clear")
+                    os.system("cls")
                     # os.sys.exit()
                     return True
                 else:
@@ -176,7 +171,7 @@ def check(turns, marks):
             f.write('\n')
             # f.write(print_desk())
             # os.sys.exit()
-            os.system("clear")
+            os.system("cls")
             return True
         return False
 
@@ -190,6 +185,7 @@ combos = ['123', '456', '789',
 x_win = 0
 y_win = 0
 if __name__ == "__main__":
+    # game()
     for i in range(10000):
         game()
         for i in range(1, 9):
